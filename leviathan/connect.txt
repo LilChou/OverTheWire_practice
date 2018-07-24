@@ -1,0 +1,6 @@
+> sshpass -f leviathan ssh leviathan@leviathan.labs.overthewire.org -p 2223
+
+put the password into the leviathan# file
+copy the above command and run with the bellow command
+
+> $(cat challenge#)
