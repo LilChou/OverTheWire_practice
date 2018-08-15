@@ -41,10 +41,3 @@
 	and we found that we get into the shell with code 7123
 	> cat /etc/leviathan_pass/leviathan7
 
-
-
-
-
-
-
-	   

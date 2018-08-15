@@ -1,1 +1,0 @@
-sshpass -f leviathan6 ssh leviathan6@leviathan.labs.overthewire.org -p 2223
